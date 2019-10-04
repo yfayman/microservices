@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yan.photoappdiscovery.api.users.model.CreateUserRequestModel;
 import com.yan.photoappdiscovery.api.users.model.CreateUserResponseModel;
+import com.yan.photoappdiscovery.api.users.model.StatusReponse;
 import com.yan.photoappdiscovery.api.users.model.UserDto;
 import com.yan.photoappdiscovery.api.users.service.UsersService;
 
@@ -29,9 +31,18 @@ public class UsersController {
 	private @Autowired UsersService usersService;
 	
 	@GetMapping("/status/check")
-	public String status() {
-		return "Working on port " + env.getProperty("local.server.port") + 
-				" using secret " + env.getProperty("token.secret");
+	public ResponseEntity<StatusReponse> status() {
+		StatusReponse response = new StatusReponse();
+		response.setSecret(env.getProperty("token.secret"));
+		response.setSuccess(true);
+		response.setPort(env.getProperty("local.server.port", Integer.class));
+		
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	@GetMapping("/ping")
+	public String ping() {
+		return "pong";
 	}
 	
 	@PostMapping(
