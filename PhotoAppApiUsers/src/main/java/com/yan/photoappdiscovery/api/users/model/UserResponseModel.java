@@ -1,21 +1,24 @@
 package com.yan.photoappdiscovery.api.users.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class UserDto implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
+public class UserResponseModel {
 
 	private String userId;
-	private String encryptedPassword;
+	private String firstName;
+	private String lastName;
+	
+	private String email;
 	
 	private List<AlbumResponseModel> albums;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -41,30 +44,6 @@ public class UserDto implements Serializable{
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getEncryptedPassword() {
-		return encryptedPassword;
-	}
-
-	public void setEncryptedPassword(String encryptedPassword) {
-		this.encryptedPassword = encryptedPassword;
-	}
-
 	public List<AlbumResponseModel> getAlbums() {
 		return albums;
 	}
@@ -74,5 +53,5 @@ public class UserDto implements Serializable{
 	}
 	
 	
-
+	
 }

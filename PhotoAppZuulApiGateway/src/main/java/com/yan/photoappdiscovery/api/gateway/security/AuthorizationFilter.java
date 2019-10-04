@@ -37,7 +37,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter{
 		} else {
 			UsernamePasswordAuthenticationToken auth =  getAuthentication(request);
 			SecurityContextHolder.getContext().setAuthentication(auth);
-		
+			super.doFilterInternal(request, response, chain);		
 		}
 		
 		
