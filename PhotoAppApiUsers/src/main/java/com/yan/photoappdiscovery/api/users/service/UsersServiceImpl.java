@@ -85,7 +85,9 @@ public class UsersServiceImpl implements UsersService {
 		
 		UserDto dto = new ModelMapper().map(user, UserDto.class);
 
+		logger.info("Before calling albums microservice");
 		dto.setAlbums(albumClient.getAlbums(userId));
+		logger.info("After calling albums microservice");
 		
 		return dto;
 	}
